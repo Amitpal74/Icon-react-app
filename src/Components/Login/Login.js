@@ -9,7 +9,7 @@ class Login extends Component {
 
         this.state = {
             email: "",
-            password: ""
+            password: "",
         };
     }
 
@@ -28,7 +28,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        fetch('http://localhost:8080/login', {
+        fetch('http://localhost:8086/login', {
             crossDomain: true,
             method: 'post',
             headers: {
@@ -41,6 +41,8 @@ class Login extends Component {
         }).then(data => {
             if(data.success){
                 console.log(data);
+                localStorage.setItem("login",true);
+                localStorage.setItem("name",data.data.person.name);
                 alert(data.data.person.name+" successFully login");
             }else{
                 alert("Login Failed");

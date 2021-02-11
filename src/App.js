@@ -4,13 +4,15 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap
 import classnames from 'classnames';
 import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
+import Mentor from './Components/Mentor/Mentor';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeTab: '1'
+      activeTab: '1',
+      loginStatus:false
     };
   }
   toggle(tab) {
@@ -20,10 +22,16 @@ class App extends React.Component {
       });
     }
   }
+  onClickLogin = (status) =>{
+    this.state({loginStatus : status});
+  }
 
   render(){
+    let loginStatus = localStorage.getItem("login") ? true :false;
     return (
-      <div className="backgroundLogin">
+     <div>
+       {loginStatus ? <Mentor />
+       :<div className="backgroundLogin">
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -46,7 +54,7 @@ class App extends React.Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-              <Login />
+              <Login onClickLogin={this.onClickLogin}/>
               </Col>
             </Row>
           </TabPane>
@@ -58,7 +66,8 @@ class App extends React.Component {
             </Row>
           </TabPane>
         </TabContent>
-      </div>
+      </div> }
+     </div> 
     );
   }
   

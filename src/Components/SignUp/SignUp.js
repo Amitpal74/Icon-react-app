@@ -27,7 +27,7 @@ class SignUp extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        fetch('http://localhost:8080/user/save', {
+        fetch('http://localhost:8086/user/save', {
             crossDomain: true,
             method: 'post',
             headers: {

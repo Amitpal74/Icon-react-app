@@ -22,15 +22,19 @@ class App extends React.Component {
       });
     }
   }
+  componentDidMount(){
+    this.setState({loginStatus:localStorage.getItem("login")})
+  }
   onClickLogin = (status) =>{
-    this.state({loginStatus : status});
+    console.log("loginStatus",status);
+    this.setState({loginStatus : status});
   }
 
   render(){
     let loginStatus = localStorage.getItem("login") ? true :false;
     return (
      <div>
-       {loginStatus ? <Mentor />
+       {this.state.loginStatus ? <Mentor />
        :<div className="backgroundLogin">
         <Nav tabs>
           <NavItem>

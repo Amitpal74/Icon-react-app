@@ -44,7 +44,6 @@ class Login extends Component {
                 localStorage.setItem("login",true);
                 localStorage.setItem("name",data.data.person.name);
                 this.props.onClickLogin(true);
-                alert(data.data.person.name+" successFully login");
             }else{
                 alert("Login Failed");
             }
